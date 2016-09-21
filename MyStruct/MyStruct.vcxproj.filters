@@ -27,9 +27,15 @@
     <ClCompile Include="源.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="RBTree.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LruCache.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RBNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

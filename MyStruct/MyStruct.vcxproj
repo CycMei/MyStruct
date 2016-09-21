@@ -147,12 +147,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LruCache.cpp" />
+    <ClCompile Include="RBTree.h" />
     <ClCompile Include="tree.cpp" />
     <ClCompile Include="PowerAndId.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LruCache.h" />
+    <ClInclude Include="RBNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
