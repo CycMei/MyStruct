@@ -4,7 +4,6 @@
 void mtest() {
 	DefineLruCache decache;
 	decache.displayNodes();
-	//decache.putValue(3,0);
 }
 void main() {
 	mtest();
