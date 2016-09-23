@@ -3,10 +3,12 @@
 #include<iostream>
 template<typename T> class RBNode {
 public:
+	RBNode(RBNode *l, RBNode *r, RBNode *p, bool c, T k);
 	RBNode();
 	RBNode(bool col);
 	RBNode(const T &k);
-	RBNode(const T &k, bool col);
+	RBNode(bool col, const T &k);
+
 	~RBNode();
 
 	RBNode *left;
@@ -17,23 +19,29 @@ public:
 	
 
 };
+
 template<typename T>
-RBNode<T>::RBNode() :left(nullptr), right(nullptr), parent(nullptr) {
+RBNode<T>::RBNode(RBNode *l, RBNode *r, RBNode *p, bool c, T k) :left(l), right(r), parent(p), color(c), key(k) {
+	std::cout << "left right parent color key........" << std::endl;
+}
+
+template<typename T>
+RBNode<T>::RBNode() : RBNode(nullptr, nullptr, nullptr, false, T()) {
 	std::cout << "left right parent........" << std::endl;
 }
 
 template<typename T>
-RBNode<T>::RBNode(bool col) : RBNode(), color(col) {
+RBNode<T>::RBNode(bool col) : RBNode(nullptr, nullptr, nullptr, col, T()) {
 	std::cout << "color........" << std::endl;
 }
 
 template<typename T>
-RBNode<T>::RBNode(const T &k) : RBNode(false), key(k) {
+RBNode<T>::RBNode(const T &k) : RBNode(nullptr, nullptr, nullptr, false, k) {
 	std::cout << "key........" << std::endl;
 }
 
 template<typename T>
-RBNode<T>::RBNode(const T &k, bool col) : RBNode(), RBNode(col), key(k) {
+RBNode<T>::RBNode(bool col, const T &k) : RBNode(nullptr, nullptr, nullptr, col, k) {
 	std::cout << "color key ........" << std::endl;
 }
 

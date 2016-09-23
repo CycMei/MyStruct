@@ -1,5 +1,5 @@
 #include"LruCache.h"
-#include"RBNode.h"
+#include"RBTree.h"
 
 #include<vld.h>
 void mtest() {
@@ -8,8 +8,9 @@ void mtest() {
 }
 
 void mtest1() {
-	//RBNode<int> *rb = new RBNode<int>(3);
-	RBNode<int> rb(2);
+	RBTree<int> rbTree;
+	rbTree.RBInser(10);
+	rbTree.RBInser(5);
 }
 
 void main() {
