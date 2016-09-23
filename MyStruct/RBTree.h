@@ -6,7 +6,10 @@ template<typename T> class RBTree {
 public:
 	RBTree();
 	~RBTree();
-	void RBInser(const T &key);
+	bool leftRotate(RBNode *node);
+	bool rightRotate(RBNode *node);
+	void RBInsert(const T &key);
+	void RBInsertFixUp(RBNode *node);
 	bool isEmpty() const;
 private:
 	RBNode<T> *root;
@@ -34,7 +37,49 @@ template<typename T> bool RBTree<T>::isEmpty() const {
 	return root == nullptr;
 }
 
-template<typename T> void RBTree<T>::RBInser(const T &key) {
+template<typename T> bool RBTree<T>::leftRotate(RBNode<T> *node) {
+	if (!node->right) {
+		std::cout << "旋转节点的有孩子是空的。。。。。。。。。。。。。" << < std::endl;
+		return false;
+	}
+	RBNode<T> *rightNode = node->right;
+	node->right = rightNode->left;
+	if (rightNode->left)
+		rightNode->left->parent = node;
+	rightNode->parent = node->parent;
+	if (!node->parent)
+		root = rightNode;
+	else if (node == node->parent->left)
+		node->parent->left = rightNode;
+	else
+		node->parent->right = rightNode;
+	rightNode->left = node;
+	node->parent = rightNode;
+	return true;
+}
+
+template<typename T> bool RBTree<T>::rightRotate(RBNode<T> *node) {
+	if (!node->left) {
+		std::cout << "右旋点的左孩子是空的。。。。。。。。。。。。。。" << std::endl;
+		return false;
+	}
+	RBNode<T> *leftNode = node->left;
+	node->left = leftNode->right;
+	if (leftNode->right)
+		leftNode->right->parent = node;
+	leftNode->parent = node->parent;
+	if (!node->parent)
+		root = leftNode;
+	else if (node == node->parent->left)
+		node->parent->left = leftNode;
+	else
+		node->parent->right = leftNode;
+	leftNode->right = node;
+	node->parent = leftNode;
+	return true;
+}
+
+template<typename T> void RBTree<T>::RBInsert(const T &key) {
 	if (isEmpty()) {
 		root = new RBNode<T>(false,key);
 		copyRoot = root;
@@ -61,6 +106,27 @@ template<typename T> void RBTree<T>::RBInser(const T &key) {
 			nextNode->right = curNode;
 		}
 		curNode->parent=nextNode;
+	}
+}
+
+template<typename T> void RBTree<T>::RBInsertFixUp(RBNode<T> *node) {
+	while (node->parent->color) {
+		if (node->parent == node->parent->parent->left) {
+			RBNode<T> *yNode = node->parent->parent->right;
+			if (yNode->color) {
+				node->parent->color = false;
+				yNode->color = false;
+				node->parent->parent->color = true;
+				node = node->parent->parent;
+			}
+			else if (node == node->parent->right) {
+				node = node->parent;
+				leftRotate(node);
+				node->parent->color = false;
+				node->parent->parent->color = true;
+				rightRotate(node->parent->parent);
+			}
+		}
 	}
 }
 

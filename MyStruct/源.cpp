@@ -9,8 +9,8 @@ void mtest() {
 
 void mtest1() {
 	RBTree<int> rbTree;
-	rbTree.RBInser(10);
-	rbTree.RBInser(5);
+	rbTree.RBInsert(10);
+	rbTree.RBInsert(5);
 }
 
 void main() {
